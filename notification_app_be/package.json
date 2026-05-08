@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
+    "setup": "node src/setupInteractive.js",
     "register": "node src/setupCredentials.js register",
     "auth": "node src/setupCredentials.js auth",
     "test": "node src/priority.test.js"

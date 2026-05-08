@@ -18,6 +18,7 @@ Create a `.env` file from `.env.example` when protected API credentials are avai
 Useful setup commands:
 
 ```bash
+npm run setup
 npm run register
 npm run auth
 ```
