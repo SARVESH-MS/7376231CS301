@@ -2,13 +2,13 @@ import "dotenv/config";
 import cors from "cors";
 import express from "express";
 import { createLogger } from "logging_middleware";
+import { getAuthToken } from "./authClient.js";
 import { getPriorityNotifications, normalizeNotification } from "./priority.js";
-import { sampleNotifications } from "./sampleData.js";
 
 const app = express();
 const port = Number(process.env.PORT || 4000);
 const apiBase = process.env.EVALUATION_API_BASE || "http://4.224.186.213/evaluation-service";
-const evaluationToken = process.env.EVALUATION_ACCESS_TOKEN;
+let evaluationToken = process.env.EVALUATION_ACCESS_TOKEN;
 const viewedIds = new Set();
 const Log = createLogger();
 
@@ -23,16 +23,53 @@ async function writeLog(level, packageName, message) {
   }
 }
 
-async function fetchNotificationsFromSource() {
-  if (!evaluationToken) {
-    return sampleNotifications;
+async function refreshEvaluationToken() {
+  const requiredValues = [
+    "EVALUATION_EMAIL",
+    "EVALUATION_NAME",
+    "EVALUATION_ROLL_NO",
+    "EVALUATION_ACCESS_CODE",
+    "EVALUATION_CLIENT_ID",
+    "EVALUATION_CLIENT_SECRET"
+  ];
+  const missingValue = requiredValues.find((key) => !process.env[key]);
+
+  if (missingValue) {
+    throw new Error("Evaluation credentials are not fully configured");
   }
 
-  const response = await fetch(`${apiBase}/notifications`, {
+  const auth = await getAuthToken({
+    email: process.env.EVALUATION_EMAIL,
+    name: process.env.EVALUATION_NAME,
+    rollNo: process.env.EVALUATION_ROLL_NO,
+    accessCode: process.env.EVALUATION_ACCESS_CODE,
+    clientID: process.env.EVALUATION_CLIENT_ID,
+    clientSecret: process.env.EVALUATION_CLIENT_SECRET
+  });
+
+  evaluationToken = auth.access_token;
+  return evaluationToken;
+}
+
+async function requestLiveNotifications(token) {
+  return fetch(`${apiBase}/notifications`, {
     headers: {
-      Authorization: `Bearer ${evaluationToken}`
+      Authorization: `Bearer ${token}`
     }
   });
+}
+
+async function fetchNotificationsFromSource() {
+  if (!evaluationToken) {
+    await refreshEvaluationToken();
+  }
+
+  let response = await requestLiveNotifications(evaluationToken);
+
+  if (response.status === 401) {
+    const freshToken = await refreshEvaluationToken();
+    response = await requestLiveNotifications(freshToken);
+  }
 
   if (!response.ok) {
     throw new Error("Notification source request failed");
