@@ -1,6 +1,8 @@
 # Notification App Backend
 
-Backend application for the notification system.
+This folder contains the backend service for the notification system.
+
+The backend is responsible for exposing notification-related APIs, handling application logic, and using the shared logging middleware for important events and errors.
 
 ## Run
 

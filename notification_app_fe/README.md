@@ -1,6 +1,8 @@
 # Notification App Frontend
 
-Frontend application for the notification system.
+This folder contains the frontend application for viewing notifications.
+
+The app is intended to show all notifications, support priority notifications, and distinguish between new and already viewed items in a clean interface.
 
 ## Run
 

@@ -2,34 +2,34 @@
 
 ## REST API Design
 
-TODO: Define notification platform actions, endpoints, request/response schemas, headers, and real-time notification mechanism.
+This stage describes the API contract for the notification platform. The design covers the main actions required by the frontend, the expected request and response formats, required headers, and the approach for real-time notification updates.
 
 # Stage 2
 
 ## Storage Design
 
-TODO: Recommend persistent storage, explain the choice, define schema, scaling concerns, and query approach.
+This stage explains the storage choice for saving notifications reliably. It includes the database schema, the reason for choosing the database, possible scaling issues as data grows, and the queries needed by the APIs from Stage 1.
 
 # Stage 3
 
 ## Query Optimization
 
-TODO: Analyze unread notification query, indexing strategy, cost, and placement notification query for last 7 days.
+This stage reviews the slow unread-notification query and explains why it does not scale well. It also covers a better indexing strategy and the query needed to fetch placement notifications from the last seven days.
 
 # Stage 4
 
 ## Fetching Strategy
 
-TODO: Suggest a scalable strategy for fetching notifications without overwhelming the database.
+This stage focuses on reducing database load when notifications are fetched frequently. The approach should improve the user experience while avoiding unnecessary repeated reads on every page load.
 
 # Stage 5
 
 ## Notification Delivery Redesign
 
-TODO: Identify shortcomings in synchronous notification delivery and redesign for reliability and speed.
+This stage identifies the problems in the synchronous "notify all" flow. It proposes a more reliable and faster design for saving notifications, sending emails, and pushing in-app updates without stopping halfway through the process.
 
 # Stage 6
 
 ## Priority Inbox
 
-TODO: Explain priority ranking approach and include code output/screenshots in the repository.
+This stage explains how priority notifications are selected and maintained. The priority score is based on notification type and recency so that the most important unread notifications can be shown first.
