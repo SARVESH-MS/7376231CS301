@@ -1,8 +1,8 @@
 :root {
-  color: #1d2735;
-  background: #f7f8fa;
+  color: #202734;
+  background: #f4f5f7;
   font-family:
-    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    Arial, Helvetica, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 * {
@@ -20,230 +20,201 @@ select {
 }
 
 .pageShell {
-  width: min(1180px, calc(100% - 32px));
+  width: min(1040px, calc(100% - 28px));
   margin: 0 auto;
-  padding: 22px 0;
+  padding: 20px 0 36px;
 }
 
 .topBar {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  gap: 20px;
-  padding: 12px 0 18px;
-}
-
-.eyebrow {
-  margin: 0 0 6px;
-  color: #4b635a;
-  font-size: 0.78rem;
-  font-weight: 650;
-  letter-spacing: 0;
-  text-transform: uppercase;
+  gap: 16px;
+  margin-bottom: 14px;
 }
 
 h1 {
   margin: 0;
-  color: #172033;
-  font-size: clamp(2rem, 4vw, 3rem);
-  line-height: 1.05;
+  color: #1d2430;
+  font-size: 2rem;
+  line-height: 1.15;
 }
 
 .subtitle {
-  max-width: 520px;
-  margin: 8px 0 0;
-  color: #657184;
-  font-size: 1rem;
+  margin: 6px 0 0;
+  color: #687386;
+  font-size: 0.96rem;
 }
 
 .summary {
-  min-width: 92px;
-  padding: 12px 16px;
-  border: 1px solid #d8dee9;
-  border-radius: 8px;
-  background: #ffffff;
-  text-align: center;
-}
-
-.summary strong {
-  display: block;
-  font-size: 1.65rem;
-}
-
-.summary span {
-  color: #596579;
+  color: #475569;
+  font-weight: 700;
+  white-space: nowrap;
 }
 
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 16px;
-  padding: 10px;
-  border: 1px solid #dfe5ee;
-  border-radius: 8px;
-  background: #ffffff;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 10px 0;
+  border-top: 1px solid #d7dde7;
+  border-bottom: 1px solid #d7dde7;
 }
 
 .tabs {
   display: flex;
-  gap: 8px;
+  gap: 6px;
 }
 
 .tabs button,
-.notification button {
-  min-height: 36px;
-  border: 1px solid #cfd8e6;
-  border-radius: 6px;
+.viewButton {
+  min-height: 34px;
+  border: 1px solid #c7d1df;
+  border-radius: 4px;
   background: #ffffff;
-  color: #1a2a43;
+  color: #243044;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 .tabs button {
-  padding: 0 13px;
+  padding: 0 12px;
 }
 
 .tabs button.active {
-  border-color: #245b9d;
-  background: #245b9d;
-  color: #ffffff;
+  border-color: #2f669d;
+  background: #eaf2fb;
+  color: #1d4f85;
 }
 
-label {
+.typeFilter {
   display: flex;
   align-items: center;
-  gap: 10px;
-  color: #4f5b6d;
-  font-weight: 700;
+  gap: 8px;
+  color: #4b5565;
+  font-weight: 600;
 }
 
 select {
-  min-height: 36px;
-  min-width: 140px;
-  padding: 0 12px;
-  border: 1px solid #cfd8e6;
-  border-radius: 6px;
+  min-height: 34px;
+  min-width: 130px;
+  padding: 0 10px;
+  border: 1px solid #c7d1df;
+  border-radius: 4px;
   background: #ffffff;
-  color: #172033;
+  color: #202734;
 }
 
-.notificationGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: 12px;
-}
-
-.notification {
+.notificationList {
   display: flex;
-  min-height: 186px;
   flex-direction: column;
-  gap: 10px;
-  padding: 16px;
-  border: 1px solid #dce3ed;
-  border-left: 4px solid #2f669d;
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: 0 4px 14px rgba(31, 41, 55, 0.05);
-}
-
-.notification.viewed {
-  border-left-color: #94a3b8;
-  opacity: 0.76;
-}
-
-.notificationHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 8px;
 }
 
-.type,
-.newBadge,
-.score {
-  display: inline-flex;
-  width: fit-content;
+.notificationRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 150px;
+  gap: 16px;
   align-items: center;
-  min-height: 24px;
-  padding: 0 9px;
-  border-radius: 999px;
-  font-size: 0.78rem;
+  padding: 13px 14px;
+  border: 1px solid #d9e0ea;
+  border-left: 3px solid #2f669d;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.notificationRow.viewed {
+  border-left-color: #aeb7c4;
+  background: #fbfbfc;
+  color: #747d8c;
+}
+
+.notificationMain {
+  min-width: 0;
+}
+
+.notificationTitleLine {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.notificationTitleLine h3 {
+  overflow: hidden;
+  margin: 0;
+  color: #1f2937;
+  font-size: 1rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notificationMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 0.88rem;
+}
+
+.type {
+  color: #365f91;
   font-weight: 700;
 }
 
 .type.placement {
-  background: #e5f3ec;
-  color: #166b45;
+  color: #17643f;
 }
 
 .type.result {
-  background: #eef2ff;
-  color: #3847a8;
+  color: #3949a3;
 }
 
 .type.event {
-  background: #fff3d8;
   color: #805200;
 }
 
-.newBadge {
-  background: #fce7e7;
+.newDot {
   color: #a12626;
+  font-size: 0.8rem;
+  font-weight: 700;
 }
 
-.notification h3 {
-  margin: 0;
-  color: #182235;
-  font-size: 1.05rem;
-  line-height: 1.25;
+.viewButton {
+  width: 100%;
+  padding: 0 10px;
 }
 
-.notification p {
-  margin: 0;
-  color: #596579;
-  font-size: 0.95rem;
-}
-
-.score {
-  margin-top: auto;
-  background: #edf7f1;
-  color: #21533a;
-}
-
-.notification button {
-  margin-top: auto;
-  font-weight: 650;
-}
-
-.notification button:disabled {
+.viewButton:disabled {
   cursor: default;
-  opacity: 0.68;
+  opacity: 0.62;
 }
 
 .emptyState,
 .errorBanner {
-  padding: 22px;
-  border: 1px solid #dce3ed;
-  border-radius: 8px;
+  padding: 18px;
+  border: 1px solid #d9e0ea;
+  border-radius: 5px;
   background: #ffffff;
-  color: #4f5b6d;
+  color: #596579;
   text-align: center;
 }
 
 .errorBanner {
-  margin-bottom: 16px;
-  border-color: #f2c7c7;
-  background: #fff4f4;
+  margin-bottom: 12px;
+  border-color: #efc6c6;
+  background: #fff7f7;
   color: #8f2525;
 }
 
 @media (max-width: 720px) {
   .pageShell {
-    width: min(100% - 20px, 1120px);
-    padding: 18px 0;
+    width: min(100% - 20px, 1040px);
+    padding-top: 14px;
   }
 
   .topBar,
@@ -252,8 +223,13 @@ select {
     flex-direction: column;
   }
 
-  .summary {
-    text-align: left;
+  .notificationRow {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .notificationTitleLine h3 {
+    white-space: normal;
   }
 
   .tabs {
@@ -261,11 +237,7 @@ select {
     grid-template-columns: 1fr 1fr;
   }
 
-  .tabs button {
-    padding: 0 8px;
-  }
-
-  label {
+  .typeFilter {
     align-items: stretch;
     flex-direction: column;
   }

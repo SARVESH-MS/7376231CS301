@@ -52,18 +52,20 @@ function NotificationCard({ notification, viewedIds, onOpen }) {
   const isViewed = viewedIds.has(notification.id) || notification.isRead;
 
   return (
-    <article className={`notification ${isViewed ? "viewed" : "new"}`}>
-      <div className="notificationHeader">
-        <span className={typeClassName(notification.type)}>{notification.type}</span>
-        {!isViewed && <span className="newBadge">New</span>}
+    <article className={`notificationRow ${isViewed ? "viewed" : "new"}`}>
+      <div className="notificationMain">
+        <div className="notificationTitleLine">
+          <h3>{notification.message}</h3>
+          {!isViewed && <span className="newDot">New</span>}
+        </div>
+        <div className="notificationMeta">
+          <span className={typeClassName(notification.type)}>{notification.type}</span>
+          <span>{formatTime(notification.timestamp)}</span>
+          {notification.priorityScore && <span>Score: {notification.priorityScore}</span>}
+        </div>
       </div>
-      <h3>{notification.message}</h3>
-      <p>{formatTime(notification.timestamp)}</p>
-      {notification.priorityScore && (
-        <span className="score">Priority score {notification.priorityScore}</span>
-      )}
-      <button type="button" onClick={() => onOpen(notification.id)} disabled={isViewed}>
-        {isViewed ? "Viewed" : "Mark viewed"}
+      <button className="viewButton" type="button" onClick={() => onOpen(notification.id)} disabled={isViewed}>
+        {isViewed ? "Viewed" : "Mark as viewed"}
       </button>
     </article>
   );
@@ -133,17 +135,15 @@ function App() {
 
   return (
     <main className="pageShell">
-      <section className="topBar">
+      <header className="topBar">
         <div>
-          <p className="eyebrow">Student dashboard</p>
           <h1>Notifications</h1>
-          <p className="subtitle">Track placement, result, and event updates in one place.</p>
+          <p className="subtitle">Placement, result and event updates</p>
         </div>
         <div className="summary">
-          <strong>{newCount}</strong>
-          <span>unread</span>
+          <span>{newCount} unread</span>
         </div>
-      </section>
+      </header>
 
       <section className="toolbar">
         <div className="tabs" aria-label="Views">
@@ -163,8 +163,8 @@ function App() {
           </button>
         </div>
 
-        <label>
-          <span>Type</span>
+        <label className="typeFilter">
+          <span>Filter</span>
           <select value={notificationType} onChange={(event) => setNotificationType(event.target.value)}>
             {notificationTypes.map((type) => (
               <option key={type}>{type}</option>
@@ -178,7 +178,7 @@ function App() {
       {isLoading ? (
         <div className="emptyState">Loading notifications...</div>
       ) : activeView === "all" ? (
-        <section className="notificationGrid">
+        <section className="notificationList">
           {visibleNotifications.length === 0 ? (
             <EmptyState message="No notifications found." />
           ) : (
@@ -193,7 +193,7 @@ function App() {
           )}
         </section>
       ) : (
-        <section className="notificationGrid priorityGrid">
+        <section className="notificationList">
           {priorityList.length === 0 ? (
             <EmptyState message="No unread priority notifications." />
           ) : (
