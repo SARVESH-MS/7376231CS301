@@ -1,0 +1,10 @@
+{
+  "name": "logging_middleware",
+  "version": "1.0.0",
+  "description": "Reusable structured logging helper",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node test.js"
+  }
+}

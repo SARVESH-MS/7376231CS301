@@ -1,0 +1,267 @@
+:root {
+  color: #162033;
+  background: #f5f7fb;
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+select {
+  font: inherit;
+}
+
+.pageShell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0;
+}
+
+.topBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 28px 0 22px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  color: #527064;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  color: #172033;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1;
+}
+
+.summary {
+  min-width: 110px;
+  padding: 14px 18px;
+  border: 1px solid #d8dee9;
+  border-radius: 8px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.summary strong {
+  display: block;
+  font-size: 2rem;
+}
+
+.summary span {
+  color: #596579;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #dfe5ee;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tabs button,
+.notification button {
+  min-height: 40px;
+  border: 1px solid #cfd8e6;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #1a2a43;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.tabs button {
+  padding: 0 14px;
+}
+
+.tabs button.active {
+  border-color: #245b9d;
+  background: #245b9d;
+  color: #ffffff;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4f5b6d;
+  font-weight: 700;
+}
+
+select {
+  min-height: 40px;
+  min-width: 140px;
+  padding: 0 12px;
+  border: 1px solid #cfd8e6;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #172033;
+}
+
+.notificationGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 14px;
+}
+
+.notification {
+  display: flex;
+  min-height: 220px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 18px;
+  border: 1px solid #dce3ed;
+  border-left: 5px solid #245b9d;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(31, 41, 55, 0.08);
+}
+
+.notification.viewed {
+  border-left-color: #94a3b8;
+  opacity: 0.76;
+}
+
+.notificationHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.type,
+.newBadge,
+.score {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.type.placement {
+  background: #e5f3ec;
+  color: #166b45;
+}
+
+.type.result {
+  background: #eef2ff;
+  color: #3847a8;
+}
+
+.type.event {
+  background: #fff3d8;
+  color: #805200;
+}
+
+.newBadge {
+  background: #fce7e7;
+  color: #a12626;
+}
+
+.notification h3 {
+  margin: 0;
+  color: #182235;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.notification p {
+  margin: 0;
+  color: #596579;
+}
+
+.score {
+  margin-top: auto;
+  background: #edf7f1;
+  color: #21533a;
+}
+
+.notification button {
+  margin-top: auto;
+}
+
+.notification button:disabled {
+  cursor: default;
+  opacity: 0.68;
+}
+
+.emptyState,
+.errorBanner {
+  padding: 22px;
+  border: 1px solid #dce3ed;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #4f5b6d;
+  text-align: center;
+}
+
+.errorBanner {
+  margin-bottom: 16px;
+  border-color: #f2c7c7;
+  background: #fff4f4;
+  color: #8f2525;
+}
+
+@media (max-width: 720px) {
+  .pageShell {
+    width: min(100% - 20px, 1120px);
+    padding: 18px 0;
+  }
+
+  .topBar,
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .summary {
+    text-align: left;
+  }
+
+  .tabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .tabs button {
+    padding: 0 8px;
+  }
+
+  label {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  select {
+    width: 100%;
+  }
+}

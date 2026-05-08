@@ -10,3 +10,11 @@ The middleware is responsible for sending structured logs to the evaluation serv
 npm install
 npm test
 ```
+
+## Usage
+
+```js
+import { Log } from "logging_middleware";
+
+await Log("backend", "info", "service", "notification service started");
+```

@@ -22,4 +22,22 @@ notification_app_fe/
 
 ## Run
 
-Each application folder has its own README with the commands needed to install dependencies and run that part of the project.
+Install everything once from the repository root:
+
+```bash
+npm install
+```
+
+Start the backend:
+
+```bash
+npm run start:be
+```
+
+Start the frontend in another terminal:
+
+```bash
+npm run start:fe
+```
+
+The frontend runs on `http://localhost:3000`.
