@@ -163,7 +163,6 @@ function App() {
         <div>
           <p className="eyebrow">Student dashboard</p>
           <h1>Notifications</h1>
-          <p className="subtitle">Track placement, result, and event updates in one place.</p>
         </div>
         <div className="summary">
           <strong>{newCount}</strong>
