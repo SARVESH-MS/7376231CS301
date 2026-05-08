@@ -23,26 +23,12 @@ async function writeLog(level, packageName, message) {
   }
 }
 
-async function fetchNotificationsFromSource(query) {
+async function fetchNotificationsFromSource() {
   if (!evaluationToken) {
     return sampleNotifications;
   }
 
-  const url = new URL(`${apiBase}/notifications`);
-
-  if (query.limit) {
-    url.searchParams.set("limit", query.limit);
-  }
-
-  if (query.page) {
-    url.searchParams.set("page", query.page);
-  }
-
-  if (query.notification_type) {
-    url.searchParams.set("notification_type", query.notification_type);
-  }
-
-  const response = await fetch(url, {
+  const response = await fetch(`${apiBase}/notifications`, {
     headers: {
       Authorization: `Bearer ${evaluationToken}`
     }
@@ -57,7 +43,7 @@ async function fetchNotificationsFromSource(query) {
 }
 
 async function getNotifications(query = {}) {
-  const rawNotifications = await fetchNotificationsFromSource(query);
+  const rawNotifications = await fetchNotificationsFromSource();
   let notifications = rawNotifications.map((item) => normalizeNotification(item, viewedIds));
 
   if (query.notification_type) {
@@ -66,7 +52,11 @@ async function getNotifications(query = {}) {
     );
   }
 
-  return notifications;
+  const page = Math.max(1, Number(query.page || 1));
+  const limit = Math.max(1, Number(query.limit || notifications.length));
+  const start = (page - 1) * limit;
+
+  return notifications.slice(start, start + limit);
 }
 
 app.get("/api/health", (_request, response) => {

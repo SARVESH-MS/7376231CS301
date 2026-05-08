@@ -42,22 +42,30 @@ function writeEnv(values) {
 }
 
 async function ask(question, defaultValue = "") {
+  if (!rl) {
+    rl = readline.createInterface({ input, output });
+  }
+
   const suffix = defaultValue ? ` (${defaultValue})` : "";
   const answer = await rl.question(`${question}${suffix}: `);
   return answer.trim() || defaultValue;
 }
 
-const rl = readline.createInterface({ input, output });
+let rl;
 const existing = readExistingEnv();
+
+async function getValue(question, envKey, fallback = "") {
+  return process.env[envKey] || existing[envKey] || (await ask(question, fallback));
+}
 
 try {
   const profile = {
-    email: await ask("Email", existing.EVALUATION_EMAIL),
-    name: await ask("Name", existing.EVALUATION_NAME),
-    mobileNo: await ask("Mobile number", existing.EVALUATION_MOBILE),
-    githubUsername: await ask("GitHub username", existing.EVALUATION_GITHUB_USERNAME || "SARVESH-MS"),
-    rollNo: await ask("Roll number", existing.EVALUATION_ROLL_NO || "7376231CS301"),
-    accessCode: await ask("Access code", existing.EVALUATION_ACCESS_CODE)
+    email: await getValue("Email", "EVALUATION_EMAIL"),
+    name: await getValue("Name", "EVALUATION_NAME"),
+    mobileNo: await getValue("Mobile number", "EVALUATION_MOBILE"),
+    githubUsername: await getValue("GitHub username", "EVALUATION_GITHUB_USERNAME", "SARVESH-MS"),
+    rollNo: await getValue("Roll number", "EVALUATION_ROLL_NO", "7376231CS301"),
+    accessCode: await getValue("Access code", "EVALUATION_ACCESS_CODE")
   };
 
   let clientID = existing.EVALUATION_CLIENT_ID;
@@ -90,5 +98,5 @@ try {
   output.write(`Setup failed: ${error.message}\n`);
   process.exitCode = 1;
 } finally {
-  rl.close();
+  rl?.close();
 }
