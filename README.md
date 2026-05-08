@@ -1,17 +1,16 @@
 # 7376231CS301
 
-Assessment submission repository.
+Campus hiring evaluation submission.
 
 ## Structure
 
-Each attempted question should be placed in a separate folder.
-
 ```text
-Question1/
-Question2/
-Question3/
+logging_middleware/
+notification_system_design.md
+notification_app_be/
+notification_app_fe/
 ```
 
 ## Run
 
-Open the required question folder and follow its README instructions.
+Open the required folder and follow its README instructions.
