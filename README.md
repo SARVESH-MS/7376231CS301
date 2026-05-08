@@ -11,6 +11,7 @@ logging_middleware/
 notification_system_design.md
 notification_app_be/
 notification_app_fe/
+screenshots/
 ```
 
 ## Contents
@@ -19,6 +20,7 @@ notification_app_fe/
 - `notification_system_design.md` contains the design notes and stage-wise answers.
 - `notification_app_be/` contains the backend service code.
 - `notification_app_fe/` contains the frontend application.
+- `screenshots/` contains desktop and mobile output screenshots.
 
 ## Run
 

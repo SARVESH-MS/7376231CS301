@@ -13,6 +13,17 @@ const Log = createLogger({
   token: import.meta.env.VITE_LOG_ACCESS_TOKEN
 });
 
+function getInitialView() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("view") === "priority" ? "priority" : "all";
+}
+
+function getInitialType() {
+  const params = new URLSearchParams(window.location.search);
+  const type = params.get("type");
+  return notificationTypes.includes(type) ? type : "All";
+}
+
 function useViewedNotifications() {
   const [viewedIds, setViewedIds] = useState(() => {
     const stored = window.localStorage.getItem("viewedNotificationIds");
@@ -74,8 +85,8 @@ function EmptyState({ message }) {
 }
 
 function App() {
-  const [activeView, setActiveView] = useState("all");
-  const [notificationType, setNotificationType] = useState("All");
+  const [activeView, setActiveView] = useState(getInitialView);
+  const [notificationType, setNotificationType] = useState(getInitialType);
   const [notifications, setNotifications] = useState([]);
   const [priorityNotifications, setPriorityNotifications] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -128,6 +139,21 @@ function App() {
   useEffect(() => {
     loadData();
   }, [notificationType]);
+
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (activeView === "priority") {
+      params.set("view", "priority");
+    }
+
+    if (notificationType !== "All") {
+      params.set("type", notificationType);
+    }
+
+    const nextUrl = params.toString() ? `?${params.toString()}` : window.location.pathname;
+    window.history.replaceState(null, "", nextUrl);
+  }, [activeView, notificationType]);
 
   const newCount = visibleNotifications.filter((notification) => !notification.isRead).length;
 
