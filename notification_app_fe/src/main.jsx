@@ -135,8 +135,9 @@ function App() {
     <main className="pageShell">
       <section className="topBar">
         <div>
-          <p className="eyebrow">Campus notifications</p>
-          <h1>Notification Inbox</h1>
+          <p className="eyebrow">Student dashboard</p>
+          <h1>Notifications</h1>
+          <p className="subtitle">Track placement, result, and event updates in one place.</p>
         </div>
         <div className="summary">
           <strong>{newCount}</strong>
@@ -151,7 +152,7 @@ function App() {
             type="button"
             onClick={() => setActiveView("all")}
           >
-            All notifications
+            All
           </button>
           <button
             className={activeView === "priority" ? "active" : ""}

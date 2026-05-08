@@ -1,6 +1,6 @@
 :root {
-  color: #162033;
-  background: #f5f7fb;
+  color: #1d2735;
+  background: #f7f8fa;
   font-family:
     Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -20,9 +20,9 @@ select {
 }
 
 .pageShell {
-  width: min(1120px, calc(100% - 32px));
+  width: min(1180px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 32px 0;
+  padding: 22px 0;
 }
 
 .topBar {
@@ -30,14 +30,14 @@ select {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 28px 0 22px;
+  padding: 12px 0 18px;
 }
 
 .eyebrow {
-  margin: 0 0 8px;
-  color: #527064;
-  font-size: 0.82rem;
-  font-weight: 700;
+  margin: 0 0 6px;
+  color: #4b635a;
+  font-size: 0.78rem;
+  font-weight: 650;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -45,13 +45,20 @@ select {
 h1 {
   margin: 0;
   color: #172033;
-  font-size: clamp(2rem, 6vw, 4rem);
-  line-height: 1;
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.05;
+}
+
+.subtitle {
+  max-width: 520px;
+  margin: 8px 0 0;
+  color: #657184;
+  font-size: 1rem;
 }
 
 .summary {
-  min-width: 110px;
-  padding: 14px 18px;
+  min-width: 92px;
+  padding: 12px 16px;
   border: 1px solid #d8dee9;
   border-radius: 8px;
   background: #ffffff;
@@ -60,7 +67,7 @@ h1 {
 
 .summary strong {
   display: block;
-  font-size: 2rem;
+  font-size: 1.65rem;
 }
 
 .summary span {
@@ -72,8 +79,8 @@ h1 {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin-bottom: 20px;
-  padding: 12px;
+  margin-bottom: 16px;
+  padding: 10px;
   border: 1px solid #dfe5ee;
   border-radius: 8px;
   background: #ffffff;
@@ -86,7 +93,7 @@ h1 {
 
 .tabs button,
 .notification button {
-  min-height: 40px;
+  min-height: 36px;
   border: 1px solid #cfd8e6;
   border-radius: 6px;
   background: #ffffff;
@@ -96,7 +103,7 @@ h1 {
 }
 
 .tabs button {
-  padding: 0 14px;
+  padding: 0 13px;
 }
 
 .tabs button.active {
@@ -114,7 +121,7 @@ label {
 }
 
 select {
-  min-height: 40px;
+  min-height: 36px;
   min-width: 140px;
   padding: 0 12px;
   border: 1px solid #cfd8e6;
@@ -125,21 +132,21 @@ select {
 
 .notificationGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 12px;
 }
 
 .notification {
   display: flex;
-  min-height: 220px;
+  min-height: 186px;
   flex-direction: column;
-  gap: 12px;
-  padding: 18px;
+  gap: 10px;
+  padding: 16px;
   border: 1px solid #dce3ed;
-  border-left: 5px solid #245b9d;
+  border-left: 4px solid #2f669d;
   border-radius: 8px;
   background: #ffffff;
-  box-shadow: 0 12px 32px rgba(31, 41, 55, 0.08);
+  box-shadow: 0 4px 14px rgba(31, 41, 55, 0.05);
 }
 
 .notification.viewed {
@@ -160,11 +167,11 @@ select {
   display: inline-flex;
   width: fit-content;
   align-items: center;
-  min-height: 28px;
-  padding: 0 10px;
+  min-height: 24px;
+  padding: 0 9px;
   border-radius: 999px;
-  font-size: 0.8rem;
-  font-weight: 800;
+  font-size: 0.78rem;
+  font-weight: 700;
 }
 
 .type.placement {
@@ -190,13 +197,14 @@ select {
 .notification h3 {
   margin: 0;
   color: #182235;
-  font-size: 1.2rem;
+  font-size: 1.05rem;
   line-height: 1.25;
 }
 
 .notification p {
   margin: 0;
   color: #596579;
+  font-size: 0.95rem;
 }
 
 .score {
@@ -207,6 +215,7 @@ select {
 
 .notification button {
   margin-top: auto;
+  font-weight: 650;
 }
 
 .notification button:disabled {
